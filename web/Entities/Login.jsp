@@ -1,101 +1,132 @@
+<%@page import="com.mysql.jdbc.Util"%>
+<%@page import="com.project1.dao.impl.loginImpl"%>
+<%@page import="com.project1.dao.loginDAO"%>
+<%@page import="com.project1.entity.Login" %>
+
+
+<%if (request.getMethod().equalsIgnoreCase("post")) {
+        // JOptionPane.showMessageDialog(null, "this is a pop up message");
+
+        loginDAO logDao = new loginImpl();
+//Login login=new Login();
+        for (Login b : logDao.getALL()) {
+//if(b.getName().equalsIgnoreCase("saas")){
+            if ((request.getParameter("uname")).equalsIgnoreCase(b.getName())) {
+                if ((request.getParameter("psw")).equalsIgnoreCase(b.getPassword())) {
+                    response.sendRedirect("../Entities/Admin.jsp");
+                    break;
+                } 
+               // response.sendRedirect("../Buy/starwar.jsp");
+               //   break;     
+            }
+         }
+     //  response.sendRedirect("../index.jsp");
+    }
+%>
+
 <!DOCTYPE html>
 <html>
-<style>
-form {
-    border: 3px solid #f1f1f1;
-    width: 40%;
-    height:100%;
-}
+    <style>
+        form {
+            border: 3px solid #f1f1f1;
+            width: 40%;
+            height:100%;
+        }
 
-input[type=text], input[type=password] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-}
+        input[type=text], input[type=password] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
 
-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-}
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
 
-button:hover {
-    opacity: 0.8;
-}
+        button:hover {
+            opacity: 0.8;
+        }
+        body {
+            background-image: url("../img/movies-bg.jpg");
+            background-position: center;
+            background-size: 100%;
+        }
+        .cancelbtn {
+            width: auto;
+            padding: 10px 18px;
+            background-color: #f44336;
+        }
 
-.cancelbtn {
-    width: auto;
-    padding: 10px 18px;
-    background-color: #f44336;
-}
+        .imgcontainer {
+            text-align: center;
+            margin: 24px 0 12px 0;
+        }
 
-.imgcontainer {
-    text-align: center;
-    margin: 24px 0 12px 0;
-}
+        img.avatar {
+            width: 40%;
+            border-radius: 50%;
+        }
 
-img.avatar {
-    width: 40%;
-    border-radius: 50%;
-}
+        .container {
+            padding: 16px;
+        }
 
-.container {
-    padding: 16px;
-}
+        span.psw {
+            float: right;
+            padding-top: 16px;
+        }
 
-span.psw {
-    float: right;
-    padding-top: 16px;
-}
+        /* Change styles for span and cancel button on extra small screens */
+        @media screen and (max-width: 300px) {
+            span.psw {
+                display: block;
+                float: none;
+            }
+            .cancelbtn {
+                width: 100%;
+            }
+        }
 
-/* Change styles for span and cancel button on extra small screens */
-@media screen and (max-width: 300px) {
-    span.psw {
-       display: block;
-       float: none;
-    }
-    .cancelbtn {
-       width: 100%;
-    }
-}
-
-</style>
-<body>
-<div align="center">
-<h2>Login Form</h2>
+    </style>
+    <body>
+        <div align="center">
+            <h2>Login Form</h2>
 
 
-<form action="/action_page.php">
-  <div class="imgcontainer">
-      <img src="../img/avatar.png" alt="Avatar" class="avatar">
-  </div>
+            <form name="loginform" method="post" action="">
+                <div class="imgcontainer">
+                    <img src="../img/avatar.png" alt="Avatar" class="avatar">
+                </div>
 
-  <div class="container">
-      <div align="left">
-    <label ><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="uname" required>
+                <div class="container">
+                    <div align="left">
+                        <label ><b>Username</b></label>
+                        <input type="text" placeholder="Enter Username" name="uname" required>
 
-    <label ><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required>
-      </div>
-        
-    <button type="submit">Login</button>
-    <input type="checkbox" checked="checked"> Remember me
-  </div>
+                        <label ><b>Password</b></label>
+                        <input type="password" placeholder="Enter Password" name="psw" required>
+                    </div>
 
-  <div class="container" style="background-color:#f1f1f1">
-    <button type="button" class="cancelbtn">Cancel</button>
-    <span class="psw">Forgot <a href="#">password?</a></span>
-  </div>
-</form>
-</div>
+                    <button type="submit">Login</button>
+                    <input type="checkbox" checked="checked"> Remember me
+                </div>
 
-</body>
+                <div class="container" align="left" style="background-color:#f1f1f1">
+                    <div align="center">Not Member Yet? <a href="Register.jsp">Sign Up</a></div>
+                    <button type="button" class="cancelbtn">Cancel</button>
+                    <span class="psw">Forgot <a href="#">password?</a></span>
+                </div>
+            </form>
+        </div>
+
+    </body>
 </html>

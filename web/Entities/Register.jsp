@@ -15,13 +15,19 @@
                 padding-bottom: 10px;
                 padding-left: 10px;
                 padding:20px;
+                background: #E5E5E5         
+            }
 
-
+            body {
+                background-image: url("../img/movie2.jpg");
+                background-position: center;
+                background-size: 100%;
             }
             h1{
                 margin: 30px 0;
                 padding: 0 200px 15px 0;
                 border-bottom: 1px solid #E5E5E5;
+                background: #E5E5E5     
             }
             .bs-example{
                 width:40%;
@@ -53,21 +59,33 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label class="control-label col-xs-3" for="password">Password:</label>
+                        <div class="col-xs-9">
+                            <input type="password" class="form-control" id="password" placeholder="Password" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-xs-3" for="ConfirmPassword">Confirm Password:</label>
+                        <div class="col-xs-9">
+                            <input type="password" class="form-control" id="confirmPassword" placeholder="Password" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
                         <label class="control-label col-xs-3" for="phoneNumber">Phone Number:</label>
                         <div class="col-xs-9">
                             <input type="tel" class="form-control" id="phoneNumber" placeholder="Phone Number" required>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-xs-3">Date of Birth:</label>
+                        <label  class="control-label col-xs-3">Date of Birth:</label>
                         <div class="col-xs-3">
-                            
-                            <select class="form-control">
-                                <option>Date</option>
-                            </select>
+                            <input type="Number" class="form-control" id="day" placeholder="Date" >
+
+
                         </div>
-                        <div class="col-xs-3">
-                            <select class="form-control" >
+                        <div class="col-xs-3" >
+                            <select class="form-control">
                                 <option>Month</option>
                                 <option>Jan</option>
                                 <option>Feb</option> 
@@ -76,9 +94,7 @@
                             </select>
                         </div>
                         <div class="col-xs-3">
-                            <select class="form-control">
-                                <option>Year</option>
-                            </select>
+                            <input type="Number" class="form-control" id="year" placeholder="Year" autocomplete="on">
                         </div>
                     </div>
                     <div class="form-group">
