@@ -1,3 +1,44 @@
+<%@page import="java.security.NoSuchAlgorithmException"%>
+<%@page import="java.nio.charset.Charset"%>
+<%@page import="java.math.BigInteger"%>
+<%@page import="java.security.MessageDigest"%>
+<%@page import="com.project1.entity.Register"%>
+<%@page import="com.project1.dao.impl.RegisterDAOImpl"%>
+<%@page import="com.project1.dao.RegisterDAO"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%if (request.getMethod().equalsIgnoreCase("post")) {
+        RegisterDAO regDao = new RegisterDAOImpl();
+        Register register = new Register();
+        String plaintext = request.getParameter("password");
+        StringBuilder hash = new StringBuilder();
+        try {
+            MessageDigest sha = MessageDigest.getInstance("SHA-1");
+            byte[] hashedBytes = sha.digest(plaintext.getBytes());
+            char[] digits = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+                'a', 'b', 'c', 'd', 'e', 'f'};
+            for (int idx = 0; idx < hashedBytes.length; ++idx) {
+                byte b = hashedBytes[idx];
+                hash.append(digits[(b & 0xf0) >> 4]);
+                hash.append(digits[b & 0x0f]);
+            }
+        } catch (NoSuchAlgorithmException e) {
+            // handle error here.
+        }
+
+        String hashtext = hash.toString();
+        register.setFirstName(request.getParameter("firstName"));
+        register.setLastName(request.getParameter("lastName"));
+        register.setEmail(request.getParameter("inputEmail"));
+        register.setPassword(hashtext);
+        register.setConfirmPassword(request.getParameter("confirmPassword"));
+        register.setPhone(Integer.parseInt(request.getParameter("phoneNumber")));
+        register.setYear(Integer.parseInt(request.getParameter("year")));
+        register.setGender(request.getParameter("genderRadios"));
+        regDao.insert(register);
+    response.sendRedirect("../index.jsp");
+} 
+%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -39,42 +80,42 @@
         <div align="center">
             <div class="bs-example"  class="container">
                 <h1>Registration Form</h1>
-                <form class="form-horizontal" border="1" action="/examples/actions/confirmation.php" method="post">
+                <form class="form-horizontal" border="1" action="" method="post">
                     <div class="form-group">
                         <label class="control-label col-xs-3" for="firstName">First Name:</label>
                         <div class="col-xs-9">
-                            <input type="text" class="form-control" id="firstName" placeholder="First Name" required>
+                            <input type="text" class="form-control" name="firstName" placeholder="First Name" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-xs-3" for="lastName">Last Name:</label>
                         <div class="col-xs-9">
-                            <input type="text" class="form-control" id="lastName" placeholder="Last Name" required>
+                            <input type="text" class="form-control" name="lastName" placeholder="Last Name" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-xs-3" for="inputEmail">Email Address:</label>
                         <div class="col-xs-9">
-                            <input type="email" class="form-control" id="inputEmail" placeholder="Email Address" required>
+                            <input type="email" class="form-control" name="inputEmail" placeholder="Email Address" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-xs-3" for="password">Password:</label>
                         <div class="col-xs-9">
-                            <input type="password" class="form-control" id="password" placeholder="Password" required>
+                            <input type="password" class="form-control" name="password" placeholder="Password" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-xs-3" for="ConfirmPassword">Confirm Password:</label>
                         <div class="col-xs-9">
-                            <input type="password" class="form-control" id="confirmPassword" placeholder="Password" required>
+                            <input type="password" class="form-control" name="confirmPassword" placeholder="Password" required>
                         </div>
                     </div>
-                    
+
                     <div class="form-group">
                         <label class="control-label col-xs-3" for="phoneNumber">Phone Number:</label>
                         <div class="col-xs-9">
-                            <input type="tel" class="form-control" id="phoneNumber" placeholder="Phone Number" required>
+                            <input type="number" class="form-control" name="phoneNumber" placeholder="Phone Number" required>
                         </div>
                     </div>
                     <div class="form-group">
@@ -94,19 +135,7 @@
                             </select>
                         </div>
                         <div class="col-xs-3">
-                            <input type="Number" class="form-control" id="year" placeholder="Year" autocomplete="on">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-xs-3" for="postalAddress">Postal Address:</label>
-                        <div class="col-xs-9">
-                            <textarea rows="3" class="form-control" id="postalAddress" placeholder="Postal Address" required></textarea>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label col-xs-3" for="ZipCode">Zip Code:</label>
-                        <div class="col-xs-9">
-                            <input type="text" class="form-control" id="ZipCode" placeholder="Zip Code" required>
+                            <input type="Number" class="form-control" name="year" placeholder="Year" autocomplete="on">
                         </div>
                     </div>
                     <div class="form-group">

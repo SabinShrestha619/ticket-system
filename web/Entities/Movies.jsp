@@ -130,9 +130,11 @@
                                     <a href="https://en.wikipedia.org/wiki/Star_Wars:_The_Last_Jedi">	<img src="https://images.fandango.com/ImageRenderer/200/0/redesign/static/img/default_poster.png/0/images/masterrepository/Fandango/189929/SB_Payoff_1-Sht_v6_Lg_TM_sm.jpg"></a>
                                 </div>
                                 <div>
-                                    Star Wars:
-                                    The Last Jedi
-                                    <a href="../Buy/starwar.jsp" style="font-style: none;" class="btn btn-danger btn-sm">Buy Tickets</a>
+                                    Star Wars:The Last Jedi
+                                    <form action="../Buy/buyMovie.jsp" method="GET">
+                                        <input type="text" value="Star Wars: The Last Jedi" id="1" hidden name="moviename">
+                                        <input type="submit" onclick="location.href = '../Buy/buyMovie.jsp';" style="font-style: none;" class="btn btn-danger btn-sm" value="Buy Tickets">
+                                    </form>
                                 </div>
                             </div>
                             <div class="item">
@@ -141,6 +143,10 @@
                                 </div>
                                 <div>
                                     JUMANJI
+                                    <form action="../Buy/buyMovie.jsp" method="GET">
+                                        <input type="text" value="Jumanji" id="1" hidden name="moviename">
+                                        <input type="submit" onclick="location.href = '../Buy/buyMovie.jsp';" style="font-style: none;" class="btn btn-danger btn-sm" value="Buy Tickets">
+                                    </form>
 
                                 </div>
                             </div>
@@ -149,9 +155,11 @@
                                     <img src="https://images.fandango.com/ImageRenderer/200/0/redesign/static/img/default_poster.png/0/images/masterrepository/Fandango/192076/TheGreatestShowman2017.jpg">
                                 </div>
                                 <div>
-                                    THE GREATEST SHOWMAN
-                                    <button class="sucess" href="log.jsp" value="sabin" btn-size="xl">
-
+                                    The Greatest Showman
+                                    <form action="../Buy/buyMovie.jsp" method="GET">
+                                        <input type="text" value="THE GREATEST SHOWMAN" id="1" hidden name="moviename">
+                                        <input type="submit" onclick="location.href = '../Buy/buyMovie.jsp';" style="font-style: none;" class="btn btn-danger btn-sm" value="Buy Tickets">
+                                    </form>
                                 </div>
 
                             </div>
@@ -159,20 +167,48 @@
                                 <div class="pad15">
                                     <img src="https://images.fandango.com/ImageRenderer/200/0/redesign/static/img/default_poster.png/0/images/masterrepository/Fandango/188389/PP3_Tsr1Sheet_LastCall_RGB_.jpg">
                                 </div>
+                                <div>
+                                    Pitch Perfect 3
+                                    <form action="../Buy/buyMovie.jsp" method="GET">
+                                        <input type="text" value="Pitch Perfect 3" id="1" hidden name="moviename">
+                                        <input type="submit" onclick="location.href = '../Buy/buyMovie.jsp';" style="font-style: none;" class="btn btn-danger btn-sm" value="Buy Tickets">
+                                    </form>
+                                </div>
                             </div>
                             <div class="item">
                                 <div class="pad15">
                                     <img src="https://images.fandango.com/ImageRenderer/200/0/redesign/static/img/default_poster.png/0/images/masterrepository/Fandango/136640/DS_Online_Teaser_Vertical.sm.jpg">
+                                </div>   
+                                <div>
+                                    Downsizing
+                                    <form action="../Buy/buyMovie.jsp" method="GET">
+                                        <input type="text" value="Downsizing" id="1" hidden name="moviename">
+                                        <input type="submit" onclick="location.href = '../Buy/buyMovie.jsp';" style="font-style: none;" class="btn btn-danger btn-sm" value="Buy Tickets">
+                                    </form>
                                 </div>
                             </div>
                             <div class="item">
                                 <div class="pad15">
                                     <img src="https://images.fandango.com/ImageRenderer/200/0/redesign/static/img/default_poster.png/0/images/masterrepository/Fandango/193121/3bb_KEY_1SHEET_101_F3_sm.jpg">
                                 </div>
+                                <div>
+                                    Three Billboards
+                                    <form action="../Buy/buyMovie.jsp" method="GET">
+                                        <input type="text" value="Three Billboards" id="1" hidden name="moviename">
+                                        <input type="submit" onclick="location.href = '../Buy/buyMovie.jsp';" style="font-style: none;" class="btn btn-danger btn-sm" value="Buy Tickets">
+                                    </form>
+                                </div>
                             </div>
                             <div class="item">
                                 <div class="pad15">
                                     <img src="https://images.fandango.com/ImageRenderer/200/0/redesign/static/img/default_poster.png/0/images/masterrepository/Fandango/203826/DH-Updated-Poster---v2.jpg">
+                                </div>
+                                <div>
+                                    Darkest Hour
+                                    <form action="../Buy/buyMovie.jsp" method="GET">
+                                        <input type="text" value="Darkest Hour" id="1" hidden name="moviename">
+                                        <input type="submit" onclick="location.href = '../Buy/buyMovie.jsp';" style="font-style: none;" class="btn btn-danger btn-sm" value="Buy Tickets">
+                                    </form>
                                 </div>
                             </div>
                             <div class="item">
@@ -229,9 +265,7 @@
                     <div class="col-md-12 text-center">
                         <br/><br/><br/>
                         <hr/>
-                        <p>Settings</p>
-                        <p>Change data items for xs,sm,md and lg display items respectively. Ex:data-items="1,3,5,6"</p>
-                        <p>Change data slide for slides per click Ex:data-slide="1"</p>
+                        <p>Copyright:Sabin Shrestha</p>
                     </div>
                 </div>
             </div>

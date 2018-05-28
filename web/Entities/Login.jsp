@@ -1,26 +1,52 @@
+<%@page import="java.security.NoSuchAlgorithmException"%>
+<%@page import="java.security.MessageDigest"%>
 <%@page import="com.mysql.jdbc.Util"%>
-<%@page import="com.project1.dao.impl.loginImpl"%>
-<%@page import="com.project1.dao.loginDAO"%>
-<%@page import="com.project1.entity.Login" %>
+<%@page import="com.project1.dao.impl.RegisterDAOImpl"%>
+<%@page import="com.project1.dao.RegisterDAO"%>
+<%@page import="com.project1.entity.Register" %>
 
 
 <%if (request.getMethod().equalsIgnoreCase("post")) {
         // JOptionPane.showMessageDialog(null, "this is a pop up message");
 
-        loginDAO logDao = new loginImpl();
-//Login login=new Login();
-        for (Login b : logDao.getALL()) {
+        RegisterDAO RegDao = new RegisterDAOImpl();
+        String plaintext = request.getParameter("psw");
+        StringBuilder hash = new StringBuilder();
+        try {
+            MessageDigest sha = MessageDigest.getInstance("SHA-1");
+            byte[] hashedBytes = sha.digest(plaintext.getBytes());
+            char[] digits = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+                'a', 'b', 'c', 'd', 'e', 'f'};
+            for (int idx = 0; idx < hashedBytes.length; ++idx) {
+                byte b = hashedBytes[idx];
+                hash.append(digits[(b & 0xf0) >> 4]);
+                hash.append(digits[b & 0x0f]);
+            }
+        } catch (NoSuchAlgorithmException e) {
+            // handle error here.
+        }
+
+        String hashtext = hash.toString();
+
+//Register login=new Register();
+        for (Register b : RegDao.getALL()) {
 //if(b.getName().equalsIgnoreCase("saas")){
-            if ((request.getParameter("uname")).equalsIgnoreCase(b.getName())) {
-                if ((request.getParameter("psw")).equalsIgnoreCase(b.getPassword())) {
+            if ((request.getParameter("uname")).equalsIgnoreCase(b.getFirstName())) {
+                if ((hashtext).equalsIgnoreCase(b.getPassword())) {
+
                     response.sendRedirect("../Entities/Admin.jsp");
                     break;
-                } 
-               // response.sendRedirect("../Buy/starwar.jsp");
-               //   break;     
+                } %>
+            <script type="text/javascript">
+              alert("Form has been submitted");
+            </script>            
+            <script type="text/javascript"> window.onload = alertName; 
+            </script><%
+                response.sendRedirect("../Entities/Login.jsp");
+//   break;     
             }
-         }
-     //  response.sendRedirect("../index.jsp");
+        }
+//  response.sendRedirect("../index.jsp");
     }
 %>
 

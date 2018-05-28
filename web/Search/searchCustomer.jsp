@@ -1,4 +1,5 @@
-
+<%@page import="com.project1.dao.impl.SearchDAOImpl"%>
+<%@page import="com.project1.dao.SearchDAO"%>
 <%@page import="com.project1.entity.Booking"%>
 <%@page import="com.project1.dao.impl.BookingDAOImpl"%>
 <%@page import="com.project1.dao.BookingDAO"%>
@@ -21,17 +22,11 @@
                 <input type ="submit" value="Search"></form>
         </body>
 <br>
-  <div class="pull-right">
-            <p>
-                <a href="${pageContext.request.contextPath}/Sum/Sum.jsp" class="btn btn-primary btn-sm">
-                Total Sum of Tickets</a>
-            </p>
-        </div>
+
 
            <table class="table table-bordered table-striped table-hover">
             <tr>
                 <th> Ticket Id </th>
-                <th> Movie Name </th>
                 <th> First Name </th>
                 <th> Last Code </th>
                 <th> Email </th>
@@ -41,12 +36,14 @@
 
                 <th> Action </th>
             </tr>
+            
+             <%
+        SearchDAO sd=new SearchDAOImpl();
+        String name = (String)request.getParameter("Name");
+        for (Booking b : sd.search(name)){
+                 %>
             <tr>
-                <%BookingDAO bookingDAO = new BookingDAOImpl();
-                    for (Booking b : bookingDAO.getALL()) {%>
-
-                <td><%=b.getTicketId()%></td>                
-                <td><%=b.getMovieName()%></td>
+                <td><%=b.getTicketId()%></td>
                 <td><%=b.getFirstName()%></td>
                 <td><%=b.getLastName()%></td>
                 <td><%=b.getEmail()%></td>

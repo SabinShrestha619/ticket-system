@@ -50,8 +50,8 @@
                 <li><a href="${pageContext.request.contextPath}/Entities/Movies.jsp">Movies</a></li>
                 <li><a href="${pageContext.request.contextPath}/Entities/Concert.jsp">Concerts</a></li>
                 <li><a href="${pageContext.request.contextPath}/Entities/Sport.jsp">Sport Events</a></li>
-                <li><a href="${pageContext.request.contextPath}/Entities/gallery.jsp"><b>Gallery</b></a></li>
-                <li><a href="${pageContext.request.contextPath}/Entities/reg.jsp">Register</a></li>
+                <li><a href="${pageContext.request.contextPath}/Entities/Gallery.jsp"><b>Gallery</b></a></li>
+                <li><a href="${pageContext.request.contextPath}/Entities/Register.jsp">Register</a></li>
                 <li><a href="${pageContext.request.contextPath}/Entities/Login.jsp">Login</a></li>   
 
             </ul>

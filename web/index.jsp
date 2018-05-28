@@ -1,19 +1,14 @@
 <%@include file="Shared/header.jsp" %>
 <!DOCTYPE html>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="resources/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <script src="resources/js/jquery.min.js" type="text/javascript"></script>
     <script src="resources/js/bootstrap.min.js" type="text/javascript"></script>
-
+    <link rel="shortcut icon" href="favicon.ico"/>
 </head>
-<style>
-    .container {
-        height: 700px;
-        width:600px;
-    }
-    </style>
 <div class="container">
 
     <div align="center" id="myCarousel" class="carousel slide" data-ride="carousel" >

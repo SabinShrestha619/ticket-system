@@ -68,7 +68,21 @@ public class MoviesDAOImpl implements MoviesDAO {
 
     @Override
     public Movies getById(int id) throws SQLException, ClassNotFoundException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       Movies m = null;
+        String sql = "SELECT movieName FROM movies where movieId=? ";
+        db.connect();
+        PreparedStatement stmt = db.initStatement(sql);
+        stmt.setInt(1, id);
+        ResultSet rs = db.query();
+        if (rs.next()) {
+            m = new Movies();
+           // m.setMovieId(rs.getInt("movieId"));
+            m.setMovieName(rs.getString("movieName"));
+            //m.setReleaseDate(rs.getDate("releaseDate"));
+            //m.setCast(rs.getString("cast"));
+        }
+        db.close();
+        return m;
     }
 
     @Override

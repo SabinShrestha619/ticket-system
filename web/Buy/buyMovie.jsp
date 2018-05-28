@@ -1,4 +1,7 @@
 
+<%@page import="com.project1.entity.Movies"%>
+<%@page import="com.project1.dao.impl.MoviesDAOImpl"%>
+<%@page import="com.project1.dao.MoviesDAO"%>
 <%@page import="com.project1.dao.impl.BookingDAOImpl"%>
 <%@page import="com.project1.dao.BookingDAO"%>
 <%@page import="com.project1.entity.Booking"%>
@@ -7,21 +10,26 @@
 
 
 <h2 align="center"> Enter Details</h2>
-<%if(request.getMethod().equalsIgnoreCase("post")){
-    
-BookingDAO bookingDAO=new BookingDAOImpl();   
-Booking booking=new Booking();
-booking.setFirstName(request.getParameter("first_name"));
-booking.setLastName(request.getParameter("last_name"));
-booking.setEmail(request.getParameter("email"));
-booking.setShowTime(request.getParameter("showtime"));
-booking.setNoOfTicket(Integer.parseInt(request.getParameter("ticket_no")));
-booking.setFeedback(request.getParameter("comment"));
-bookingDAO.insert(booking);
-response.sendRedirect("../index.jsp");
- }
-    %>
+<%if (request.getMethod().equalsIgnoreCase("post")) {
 
+        BookingDAO bookingDAO = new BookingDAOImpl();
+        Booking booking = new Booking();
+        booking.setMovieName(request.getParameter("movie_name"));
+        booking.setFirstName(request.getParameter("first_name"));
+        booking.setLastName(request.getParameter("last_name"));
+        booking.setEmail(request.getParameter("email"));
+        booking.setShowTime(request.getParameter("showtime"));
+        booking.setNoOfTicket(Integer.parseInt(request.getParameter("ticket_no")));
+        booking.setFeedback(request.getParameter("comment"));
+        bookingDAO.insert(booking);
+        response.sendRedirect("../index.jsp");
+    }
+%>
+<%
+    int id = 1;
+    MoviesDAO moviesDao = new MoviesDAOImpl();
+    Movies movies = moviesDao.getById(id);
+  %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -37,7 +45,7 @@ response.sendRedirect("../index.jsp");
             float: left;
             width: 50%;
             height: 100%;
-            
+
         }
         .pad15{
             width: 30%;
@@ -54,6 +62,12 @@ response.sendRedirect("../index.jsp");
     </div>
     <div class="form" border="1px">
         <form name="form2" method="post" action="">
+            <div class="form-group">
+                <label>Movie Selected</label>
+                <input type="text" name="movie_name" required="required"
+                       value="<%= request.getParameter("moviename")%>"  readonly class="form-control"/>
+
+            </div>
             <div class="form-group">
                 <label>First Name:</label>
                 <input type="text" name="first_name" required="required"
@@ -94,7 +108,7 @@ response.sendRedirect("../index.jsp");
 
                 <textarea class="form-control" rows="2" name="comment"></textarea>
             </div> 
-            <button type="submit" class="btn btn-success" onclick="return alert('Ticket Booked');">Book</button>
+            <button type="submit" class="btn btn-success">Book</button>
             <a href="../index.jsp" class="btn btn-danger">Cancel</a>
 
     </div>

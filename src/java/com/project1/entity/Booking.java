@@ -11,13 +11,14 @@ package com.project1.entity;
  */
 public class Booking {
     private int ticketId,noOfTicket;
-    private String firstName, lastName, showTime,feedback,email;
+    private String movieName, firstName, lastName, showTime,feedback,email;
 
     public Booking() {
     }
 
-    public Booking(int ticketId, int noOfTicket, String firstName, String lastName, String showTime, String feedback, String email) {
+    public Booking(int ticketId, int noOfTicket, String movieName, String firstName, String lastName, String showTime, String feedback, String email) {
         this.ticketId = ticketId;
+        this.movieName=movieName;
         this.noOfTicket = noOfTicket;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -25,6 +26,7 @@ public class Booking {
         this.feedback = feedback;
         this.email = email;
     }
+    
 
     public int getTicketId() {
         return ticketId;
@@ -32,6 +34,14 @@ public class Booking {
 
     public void setTicketId(int ticketId) {
         this.ticketId = ticketId;
+    }
+
+    public void setMovieName(String movieName) {
+        this.movieName = movieName;
+    }
+
+    public String getMovieName() {
+        return movieName;
     }
 
     public int getNoOfTicket() {

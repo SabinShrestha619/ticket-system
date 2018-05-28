@@ -25,16 +25,17 @@ public class BookingDAOImpl implements BookingDAO{
   
     @Override
     public int insert(Booking t) throws SQLException, ClassNotFoundException {
-       String sql = "INSERT INTO booking(firstname,lastname,email,showtime,no_of_tickets,feedback)"
-                + "values(?,?,?,?,?,?)";
+       String sql = "INSERT INTO booking(movieName,firstname,lastname,email,showtime,no_of_tickets,feedback)"
+                + "values(?,?,?,?,?,?,?)";
         db.connect();
         PreparedStatement stmt = db.initStatement(sql);
-        stmt.setString(1, t.getFirstName());
-        stmt.setString(2, t.getLastName());
-        stmt.setString(3, t.getEmail());
-        stmt.setString(4, t.getShowTime());        
-        stmt.setInt(5, t.getNoOfTicket());
-        stmt.setString(6,t.getFeedback());
+        stmt.setString(1, t.getMovieName());
+        stmt.setString(2, t.getFirstName());
+        stmt.setString(3, t.getLastName());
+        stmt.setString(4, t.getEmail());
+        stmt.setString(5, t.getShowTime());        
+        stmt.setInt(6, t.getNoOfTicket());
+        stmt.setString(7,t.getFeedback());
         int result = db.update();
         db.close();
         return result;
@@ -70,6 +71,7 @@ public class BookingDAOImpl implements BookingDAO{
         while (rs.next()) {
             Booking b = new Booking();
             b.setTicketId(rs.getInt("Id"));
+            b.setMovieName(rs.getString("movieName"));
             b.setFirstName(rs.getString("firstname"));
             b.setLastName(rs.getString("lastname"));
             b.setEmail(rs.getString("email"));
